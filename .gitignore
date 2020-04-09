@@ -4,6 +4,8 @@
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 Clockwork.API/clockwork.db
 Clockwork.API/sqlite3.exe
+.vscode
+.DS_Store
 # User-specific files
 *.suo
 *.user
