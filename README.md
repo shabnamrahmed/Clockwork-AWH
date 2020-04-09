@@ -1,46 +1,34 @@
-# README #
+# Clockwork-AWH
 
-Welcome to the AWH interview exercise.
+## Summary
 
-This repo contains one solution with two projects.  It is targeted for C# and javascript developers.
+A full stack .NET application that displays the current time based on a user selected time zone and records the selection in a SQLite database. History of all previous time zone choices are stored in the database and are also displayed along with the most recent selection on page load and updated with each additional time zone selection.
 
-####Project Clockwork.API####
-Clockwork.API is a simple API that returns a time date object and records the IP address, and timedate of any callers to the API in a SQLite database.
+## Getting started
 
-####Project Clockwork.Web####
-Clockwork.Web is a simple website that uses javascript to call the API at the push of a button and displays the resulting JSON object.
+1. Open Clockwork.sln and make sure Clockwork.API is the default project
+2. Run `dotnet ef database update` in a command prompt to build the EF migration
+3. Allow multiple startup projects so both Clockwork.API and Clockwork.Web will run concurrently.
+4. Start the program
 
-####Required Technologies####
-* A windows or Mac computer.
-* Visual Studio Community Edition (latest version).  Note there are missing components on the Mac that you will have to self install (NuGet CLI) to run the API project while running the website.
+## Process
 
-### What is this repository for? ###
-The goal of this exercise is to get this solution up and running as part of the interview process to AWH.  This is to test your ability to work with git, compile existing applications and to fix issues that you encounter when getting a project up and running.
+ A single endpoint was provided for persisting an entry to the database was already set up that included the UTC Time, Server time, and Client IP. 
 
-Once you have a running project that works as intended, you will be asked to make several feature enhancements.
+After building the migration, I made sure that a time date object was returned whenever the API was run.  
 
-* Clockwork version 1.0
+I  then created a new model for the time zone which was used to get the current time in that time zone and used a list of time zones from [this stackoverflow article](https://stackoverflow.com/questions/7908343/list-of-timezone-ids-for-use-with-findtimezonebyid-in-c) to populate the drop down on page load.  
 
-### How do I get set up? ###
+Some code was given to make a request to the endpoint using `XMLHttpRequest` which I replaced with `fetch` API because I think it's easier to work with.
 
-* Install Visual Studio Community 2017 or Visual Studio Code if you do not have it set up.  Note that Visual Studio 2015 will not work with this project.
-* Clone this repo.
-* Change local configurations that may need changed for your environment.
-* Check CORS access.
-* Since this is a code first project you may need to run migrations to generate the database.
+## Additional goals
+
+* Add another input field option for user to type in a time zone that will auto-complete 
+* Get time zone by city or country
+
+## Known issues
+
+For an unknown reason, at times the time zone drop down menu isn't able to read the timezones.txt file which contains all the time zones and populates the dropdown when the page loads. Currently, the only way to to fix it is to stop and restart the program.  It seems to be an intermittent issue and I'm not sure what behavior reproduces the bug. 
 
 
-### Contribution guidelines ###
 
-* Only AWH staff should be push changes to this repo
-
-### Who do I talk to? ###
-
-* For this repo, questions on direction, scope, or intent can be directed to robin.walters@awh.net
-
-### Additional Resources ###
-[Getting Started with EF Core on .NET Core Console App with a New database](https://docs.microsoft.com/en-us/ef/core/get-started/netcore/new-db-sqlite)
-
-[EF Core .NET Command-line Tools](https://docs.microsoft.com/en-us/ef/core/miscellaneous/cli/dotnet)
-
-[Migrations - EF Core with ASP.NET Core MVC](https://docs.microsoft.com/en-us/aspnet/core/data/ef-mvc/migrations#introduction-to-migrations)
