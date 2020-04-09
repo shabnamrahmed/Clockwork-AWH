@@ -1,15 +1,18 @@
 ﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Clockwork.API.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace Clockwork.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/CurrentTime")]
     public class CurrentTimeController : Controller
     {
-        // GET api/currenttime
-        [HttpGet]
-        public IActionResult Get()
+        [HttpPost]
+        public IActionResult GetTimeByTimeZone([FromBody] TimeZoneRequestBody requestBody)
         {
             var utcTime = DateTime.UtcNow;
             var serverTime = DateTime.Now;
@@ -19,7 +22,8 @@ namespace Clockwork.API.Controllers
             {
                 UTCTime = utcTime,
                 ClientIp = ip,
-                Time = serverTime
+                Time = CurrentTimeQuery.GetTimeZoneTime(requestBody.TimeZoneId),
+                TimeZone = requestBody.TimeZoneId
             };
 
             using (var db = new ClockworkContext())
@@ -37,5 +41,31 @@ namespace Clockwork.API.Controllers
 
             return Ok(returnVal);
         }
+    }   
+
+    [Route("api/AllTimes")]
+    public class GetAllTimeEntries : Controller
+    {
+        [HttpGet]
+        public IActionResult All ()
+        {
+            using (var db = new ClockworkContext())
+            {
+                List<CurrentTimeQuery> queries = new List<CurrentTimeQuery>();
+
+                Dictionary<string, List<CurrentTimeQuery>> response = new Dictionary<string, List<CurrentTimeQuery>>();
+
+                foreach (CurrentTimeQuery entry in db.CurrentTimeQueries)
+                {
+                    queries.Add(entry);
+                }
+
+                response.Add("data", queries);
+
+                return Ok(response);
+            }
+            
+        }
     }
 }
+

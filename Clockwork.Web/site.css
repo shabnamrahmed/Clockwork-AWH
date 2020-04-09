@@ -1,0 +1,32 @@
+﻿body {
+}
+.main-content {
+    text-align: center;
+    background: linear-gradient(225deg, #213058, #28696a);
+    color: #f0e6d7;
+    border: ridge;
+    border-width: 15px;
+    border-color: darkslategray;
+}
+h2 {
+    text-align: center;
+    color: #f4ae3f;
+}
+.latest-output {
+    color: #f4ae3f;
+    font-weight: bold;
+}
+#queries {
+    display: inline-block;
+    margin: 0px;
+    text-align: center;
+}
+table th {
+    text-align: center;   
+    border-bottom: solid;
+    border-width: 1px;
+}
+table > tr:hover {
+    background-color: bisque;
+    color: black;    
+}

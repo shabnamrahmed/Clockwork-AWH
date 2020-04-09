@@ -19,5 +19,16 @@ namespace Clockwork.API.Models
         public DateTime Time { get; set; }
         public string ClientIp { get; set; }
         public DateTime UTCTime { get; set; }
+        public string TimeZone { get; set; }
+
+        public static DateTime GetTimeZoneTime(string timeZoneId)
+        {
+            DateTime timeZoneTime = new DateTime();
+            TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
+            timeZoneTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, timeZoneInfo);
+            return timeZoneTime;
+        }
     }
 }
+
+   

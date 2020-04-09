@@ -1,21 +1,29 @@
-﻿<script>
-function UserAction() {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("output").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "http://127.0.0.1:5000/api/currenttime", true);
-    xhttp.setRequestHeader("Content-type", "application/json");
-    xhttp.send();
+﻿
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="~/Script.js"></script>
+<link rel="stylesheet" href="~/site.css">
 
-}
-</script>
-
-<h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
+<div class="main-content">
+    <h2>AWH Clockwork Project @ViewData["Version"] on @ViewData["Runtime"]!</h2>
 
 
-<button type="submit" onclick="UserAction()">Get the time</button>
+    <label for="TimeZoneId">Choose a Time Zone:</label>
+    <select id="TimeZoneId" name="Time Zones"></select>
 
-<p id="output"></p>
+    <button type="submit" onclick="GetTimeFromRequestedTimeZone()">Get the time</button>
+
+    <div class="latest-output">
+        <p id="output"></p>
+    </div>
+
+    <table id="queries">
+        <tr id="results">
+            <th>Query Id</th>
+            <th>Time</th>
+            <th>Client IP</th>
+            <th>UTC Time</th>
+            <th>Time Zone</th>
+        </tr>
+    </table>
+</div>
+

@@ -9,6 +9,7 @@ namespace Clockwork.Web.Controllers
 {
     public class HomeController : Controller
     {
+        [HttpGet]
         public ActionResult Index()
         {
             var mvcName = typeof(Controller).Assembly.GetName();
@@ -16,8 +17,8 @@ namespace Clockwork.Web.Controllers
 
             ViewData["Version"] = mvcName.Version.Major + "." + mvcName.Version.Minor;
             ViewData["Runtime"] = isMono ? "Mono" : ".NET";
-
+            
             return View();
-        }
+        }        
     }
 }
