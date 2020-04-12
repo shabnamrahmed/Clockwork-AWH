@@ -1,4 +1,23 @@
-﻿async function GetTimeFromRequestedTimeZone() {
+﻿    fetch('Timezones.txt')
+        .then(response => response.text())
+        .then(text => {
+            const timeZoneList = text.split("\n");
+            timeZoneList.forEach(timeZone => {
+                timeZone = timeZone.trim();
+                const timeZoneElement = document.createElement('option');
+                timeZoneElement.value = timeZone;
+                timeZoneElement.innerText = timeZone;
+                document.querySelector('#TimeZoneId').append(timeZoneElement)
+            })
+        })
+document.querySelector('#getTime').disabled = true;
+document.querySelector('#loading').style.display = 'block';
+document.querySelector('#queries').style.display = 'none';
+GetQueries();
+
+
+
+async function GetTimeFromRequestedTimeZone() {
     try {
         const response = await fetch("http://localhost:58600/api/currenttime", {
             method: 'POST',
@@ -10,18 +29,22 @@
         const json = await response.json()
         document.querySelector('#output').innerText = `Current time in ${json.timeZone}: ${new Date(json.time).toLocaleString()}`;
 
+        document.querySelector('#loading').style.display = 'none'
         await GetQueries();
+        
 
     } catch (error) {
         console.log(error)
     }
 }
 
-GetQueries();
+
 
 async function GetQueries() {    
     try {
-       
+        document.querySelector('#getTime').disabled = false;
+        document.querySelector('#loading').style.display = 'none';
+        document.querySelector('#queries').style.display = 'block';
         const response = await fetch("http://localhost:58600/api/alltimes", {
             method: 'GET',
             headers: {
@@ -54,16 +77,5 @@ async function GetQueries() {
     }
 }
 
-fetch('Timezones.txt')
-    .then(response => response.text())
-    .then(text => {
-        const timeZoneList = text.split("\n");
-        timeZoneList.forEach(timeZone => {
-            timeZone = timeZone.trim();
-            const timeZoneElement = document.createElement('option');
-            timeZoneElement.value = timeZone;
-            timeZoneElement.innerText = timeZone;
-            document.querySelector('#TimeZoneId').append(timeZoneElement)
-        })
-    })
+
 

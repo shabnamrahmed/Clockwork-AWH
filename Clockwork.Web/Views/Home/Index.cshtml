@@ -10,7 +10,10 @@
     <label for="TimeZoneId">Choose a Time Zone:</label>
     <select id="TimeZoneId" name="Time Zones"></select>
 
-    <button type="submit" onclick="GetTimeFromRequestedTimeZone()">Get the time</button>
+    <button id="getTime" type="submit" onclick="GetTimeFromRequestedTimeZone()" >Get the time</button>
+
+    <p id="loading">Loading...</p>
+    
 
     <div class="latest-output">
         <p id="output"></p>
