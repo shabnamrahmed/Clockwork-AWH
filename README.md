@@ -7,9 +7,10 @@ A full stack .NET application that displays the current time based on a user sel
 ## Getting started
 
 1. Open Clockwork.sln and make sure Clockwork.API is the default project
-2. Run `dotnet ef database update` in a command prompt to build the EF migration
-3. Allow multiple startup projects so both Clockwork.API and Clockwork.Web will run concurrently.
+2. Run `cd Clockwork.API && dotnet ef database update` in a command prompt to build the EF migration
+3. Allow multiple startup projects so both Clockwork.API and Clockwork.Web will run concurrently by right-clicking Solution 'Clockwork' in the Solution Explorer -> Startup Project -> Select Multiple startup projects -> change the action to start for the Clockwork.API and Clockwork.Web.
 4. Start the program
+5. After the browser loads, make sure it navigates to http://localhost:58676/.
 
 ## Process
 
