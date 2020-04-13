@@ -6,15 +6,15 @@ A full stack .NET application that displays the current time based on a user sel
 
 ## Getting started
 
-1. Open Clockwork.sln and make sure Clockwork.API is the default project
-2. Run `cd Clockwork.API && dotnet ef database update` in a command prompt to build the EF migration
-3. Allow multiple startup projects so both Clockwork.API and Clockwork.Web will run concurrently by right-clicking Solution 'Clockwork' in the Solution Explorer -> Startup Project -> Select Multiple startup projects -> change the action to start for the Clockwork.API and Clockwork.Web.
+1. Open Clockwork.sln in Visual Studio and make sure Clockwork.API is the default project
+2. From the project root run `cd Clockwork.API && dotnet ef database update` in a command prompt to build the EF migration
+3. Allow multiple startup projects so both Clockwork.API and Clockwork.Web will run concurrently by right-clicking Solution 'Clockwork' in the Solution Explorer -> Properties -> Startup Project -> Select Multiple startup projects -> Change the action to `Start` for the Clockwork.API and Clockwork.Web. Your Property window should look like this: 
 4. Start the program
-5. After the browser loads, make sure it navigates to http://localhost:58676/.
+5. After the browser loads, make sure it navigates to http://localhost:58676/
 
 ## Process
 
- A single endpoint was provided for persisting an entry to the database was already set up that included the UTC Time, Server time, and Client IP. 
+ A single endpoint was provided for persisting an entry to the database and was already set up which included the UTC Time, Server time, and Client IP. 
 
 After building the migration, I made sure that a time date object was returned whenever the API was run.  
 
@@ -26,10 +26,7 @@ Some code was given to make a request to the endpoint using `XMLHttpRequest` whi
 
 * Add another input field option for user to type in a time zone that will auto-complete 
 * Get time zone by city or country
-
-## Known issues
-
-For an unknown reason, at times the time zone drop down menu isn't able to read the timezones.txt file which contains all the time zones and populates the dropdown when the page loads. Currently, the only way to to fix it is to stop and restart the program.  It seems to be an intermittent issue and I'm not sure what behavior reproduces the bug. 
+ 
 
 
 
