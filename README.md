@@ -5,16 +5,21 @@
 A full stack .NET application that displays the current time based on a user selected time zone and records the selection in a SQLite database. History of all previous time zone choices are stored in the database and are also displayed along with the most recent selection on page load and updated with each additional time zone selection.
 
 ## Getting started
-<p align="center"><img src="https://raw.githubusercontent.com/shabnamrahmed/Clockwork-AWH/master/Screenshots/allprojects.PNG" width="640" height="480"/></p> 
+
 1. Open Clockwork.sln in Visual Studio.
 2. Allow multiple startup projects so both Clockwork.API and Clockwork.Web will run concurrently by right-clicking Solution 'Clockwork' in the Solution Explorer -> Properties -> Startup Project -> Select Multiple startup projects -> Change the action to `Start` for the Clockwork.API and Clockwork.Web. Your Property window should look like this:
 <p align="center"><img src="https://raw.githubusercontent.com/shabnamrahmed/Clockwork-AWH/master/Screenshots/allprojects.PNG" width="640" height="480"/></p> 
+
 3. From the project root run `cd Clockwork.API && dotnet ef database update` in a command prompt to build the EF migration
+
 4. If one of the projects appears to be unloaded or unavailable, right-click the project name and click `Reload Project` as seen below
+
 <p align="center"><img src="https://raw.githubusercontent.com/shabnamrahmed/Clockwork-AWH/master/Screenshots/reload.png" width="640" height="480"/></p>
 
 5. Start the program
 6. After the browser loads, make sure it navigates to http://localhost:58676/
+
+<p align="center"><img src="https://raw.githubusercontent.com/shabnamrahmed/Clockwork-AWH/master/Screenshots/Demo.gif" width="640" height="480"/></p> 
 
 ## Process
 
