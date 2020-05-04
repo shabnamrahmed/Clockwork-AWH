@@ -11,10 +11,13 @@
                 document.querySelector('#TimeZoneId').append(timeZoneElement)
             })
         })
+    
     setLoadingState(true);
     
     GetQueries();
 }
+
+const keys = ['currentTimeQueryId', 'time', 'clientIp', 'utcTime', 'timeZone'];
 
 async function GetTimeFromRequestedTimeZone() {
     try {
@@ -43,12 +46,7 @@ async function GetTimeFromRequestedTimeZone() {
 
 async function GetQueries() {
     try {               
-        const response = await fetch("http://localhost:58600/api/alltimes", {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
+        const response = await fetch("http://localhost:58600/api/alltimes");
         const json = await response.json()
 
         //  Deletes table entries each time function is called so when new query 
@@ -65,7 +63,7 @@ async function GetQueries() {
 
         json.data.reverse().forEach(query => {
             const tr = document.createElement('tr');
-            const keys = ['currentTimeQueryId', 'time', 'clientIp', 'utcTime', 'timeZone']
+            
             let td1, td2, td3, td4, td5;
 
             [td1, td2, td3, td4, td5].forEach((tdElement, i) => {
