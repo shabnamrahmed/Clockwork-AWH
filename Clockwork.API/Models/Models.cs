@@ -22,7 +22,7 @@ namespace Clockwork.API.Models
         public string TimeZone { get; set; }
 
         public static DateTime GetTimeZoneTime(string timeZoneId)
-        {//explain
+        {
             DateTime timeZoneTime = new DateTime();
             TimeZoneInfo timeZoneInfo = TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
             timeZoneTime = TimeZoneInfo.ConvertTime(DateTime.Now, TimeZoneInfo.Local, timeZoneInfo);
