@@ -10,7 +10,7 @@ namespace Clockwork.API.Models
 {
     public class TimeZoneRequestBody
     {
-        public int id { get; set; }
+        
         public string TimeZoneId { get; set; }
     }
    

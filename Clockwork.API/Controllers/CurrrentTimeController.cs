@@ -13,19 +13,25 @@ namespace Clockwork.API.Controllers
     {
         [HttpPost]
         public IActionResult GetTimeByTimeZone([FromBody] TimeZoneRequestBody requestBody)
-        {
-            var utcTime = DateTime.UtcNow;
-            var serverTime = DateTime.Now;
+        {   // Takes users requested time zone, 
+            // creates entry in db and 
+            // returns the current time in the requested time zone 
+            
+            var utcTime = DateTime.UtcNow;            
             var ip = this.HttpContext.Connection.RemoteIpAddress.ToString();
 
+            // object to be added to db and returned to browser
             var returnVal = new CurrentTimeQuery
-            {
+            {   
                 UTCTime = utcTime,
                 ClientIp = ip,
-                Time = CurrentTimeQuery.GetTimeZoneTime(requestBody.TimeZoneId),
+                // converts local time to requested time zone time
+                Time = CurrentTimeQuery.GetTimeZoneTime(requestBody.TimeZoneId),                
                 TimeZone = requestBody.TimeZoneId
             };
-
+            // Makes connection to the db
+            // Adds the CurrentTimeQuery object to the db by the values I outlined
+            // Saves those changes 
             using (var db = new ClockworkContext())
             {
                 db.CurrentTimeQueries.Add(returnVal);
@@ -38,7 +44,8 @@ namespace Clockwork.API.Controllers
                     Console.WriteLine(" - {0}", CurrentTimeQuery.UTCTime);
                 }
             }
-
+            // Response to browser doesn't need all properties in currenttimequery object
+            // can select only time and time zone
             return Ok(returnVal);
         }
     }   
@@ -48,7 +55,7 @@ namespace Clockwork.API.Controllers
     {
         [HttpGet]
         public IActionResult All ()
-        {
+        {   // Retrieves all saved entries from db
             using (var db = new ClockworkContext())
             {
                 List<CurrentTimeQuery> queries = new List<CurrentTimeQuery>();
