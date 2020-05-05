@@ -1,5 +1,7 @@
 ﻿body {
+    height: 96vh;
 }
+
 .main-content {
     text-align: center;
     background: linear-gradient(225deg, #213058, #28696a);
@@ -7,29 +9,36 @@
     border: ridge;
     border-width: 15px;
     border-color: darkslategray;
+    height: 100%;
 }
+
 h2 {
     text-align: center;
     color: #f4ae3f;
 }
+
 .latest-output {
     color: #f4ae3f;
     font-weight: bold;
 }
+
 #queries {
     display: inline-block;
     margin: 0px;
     text-align: center;
 }
+
 table th {
-    text-align: center;   
+    text-align: center;
     border-bottom: solid;
     border-width: 1px;
 }
+
 table > tr:hover {
     background-color: bisque;
-    color: black;    
+    color: black;
 }
+
 #loading {
     border: 5px solid #f3f3f3;
     border-top: 5px solid #f4ae3f;
